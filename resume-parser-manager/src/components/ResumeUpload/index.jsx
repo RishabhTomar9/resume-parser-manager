@@ -1,31 +1,47 @@
-import React, { useState } from 'react';
-import './index.css';
-import { api } from '../../utils/axios';
+import React, { useState } from "react";
+import { uploadResume } from "../../api";
 
-const ResumeUpload = ({ user }) => {
+const UploadForm = () => {
   const [file, setFile] = useState(null);
 
-  const handleUpload = async () => {
-    if (!file) return alert('Select file first');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!file) {
+      alert("Please select a file.");
+      return;
+    }
 
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append("resume", file);
 
     try {
-      const res = await api(user.token).post('/resumes/upload', formData);
-      alert('Resume parsed & uploaded successfully!');
+      await uploadResume(formData);
+      alert("Resume Uploaded & Parsed Successfully!");
+      setFile(null);
+      document.getElementById("resumeFile").value = "";
     } catch (err) {
-      console.error(err);
-      alert('Failed to upload');
+      console.error("Error uploading resume:", err);
+      alert("Error uploading resume. Please try again.");
     }
   };
 
   return (
-    <div className="upload-container">
-      <input type="file" accept="application/pdf" onChange={(e) => setFile(e.target.files[0])} />
-      <button onClick={handleUpload}>Upload & Parse</button>
-    </div>
+    <form onSubmit={handleSubmit} style={{ margin: "20px" }}>
+      <div style={{ marginBottom: "10px" }}>
+        <label>Upload Resume:</label>
+        <input
+          id="resumeFile"
+          type="file"
+          accept=".pdf"
+          onChange={(e) => setFile(e.target.files[0])}
+          required
+        />
+      </div>
+
+      <button type="submit">Upload & Parse</button>
+    </form>
   );
 };
 
-export default ResumeUpload;
+export default UploadForm;

@@ -19,19 +19,22 @@ const ResumeList = ({ user }) => {
 
   useEffect(() => {
     fetchResumes();
-  }, []);
+  });
 
   const filteredResumes = resumes.filter(
     r => r.name.toLowerCase().includes(filter.toLowerCase()) || r.skills.toLowerCase().includes(filter.toLowerCase())
   );
 
   return (
-    <div>
+    <div className="resumelist-container">
       <Filters filter={filter} setFilter={setFilter} />
-      {filteredResumes.map((resume, idx) => (
-        <ResumeCard key={idx} resume={resume} />
-      ))}
+      <div className="resumelist-grid">
+        {filteredResumes.map((resume, idx) => (
+          <ResumeCard key={idx} resume={resume} />
+        ))}
+      </div>
     </div>
+
   );
 };
 

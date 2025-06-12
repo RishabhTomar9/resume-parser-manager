@@ -1,12 +1,23 @@
-.history-list {
-  list-style: none;
-  padding: 0;
+.admin-history {
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
 
-.history-list li {
-  background: #fff;
-  padding: 10px;
-  margin-bottom: 10px;
+.admin-history table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.admin-history th, td {
   border: 1px solid #ddd;
-  border-radius: 5px;
+  padding: 10px 15px;
+  text-align: left;
+}
+
+.admin-history th {
+  background-color: #f5f5f5;
+  color: #333;
 }

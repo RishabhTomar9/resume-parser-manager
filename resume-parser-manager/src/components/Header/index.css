@@ -1,18 +1,54 @@
 .header {
-  background-color: #fff;
-  padding: 10px 20px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background-color: #ffffff;
+  padding: 16px 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid #f1f1f1;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header .logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.header .logo:hover {
+  color: #0056b3;
 }
 
 .header nav a {
-  margin-left: 20px;
+  margin-left: 30px;
   text-decoration: none;
-  color: #007bff;
+  color: #333;
+  font-weight: 500;
+  font-size: 16px;
+  transition: color 0.3s, transform 0.3s;
+  position: relative;
 }
 
 .header nav a:hover {
-  text-decoration: underline;
+  color: #007bff;
+  transform: translateY(-2px);
+}
+
+.header nav a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: -5px;
+  background-color: #007bff;
+  transition: width 0.3s;
+}
+
+.header nav a:hover::after {
+  width: 100%;
 }

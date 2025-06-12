@@ -1,0 +1,66 @@
+.auth-container {
+  margin: 80px auto;
+  padding: 40px 30px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  position: relative;
+}
+
+.login-box h2 {
+  margin-bottom: 40px;
+  font-size: 28px;
+  color: #222;
+  text-align: center;
+}
+
+.welcome-box {
+  position: relative;
+  padding: 20px 10px;
+}
+
+.welcome-box h3 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  color: #222;
+}
+
+.welcome-box p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.logout-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #ff4b2b, #ff416c);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.logout-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 768px) {
+  .auth-container {
+    margin: 40px 20px;
+    padding: 30px 20px;
+  }
+
+  .logout-btn {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+}

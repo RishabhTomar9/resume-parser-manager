@@ -1,22 +1,38 @@
-const Resume = require('../models/Resume');
-const parseResume = require('../utils/parseResume');
+const Resume = require("../models/Resume");
+const pdfParse = require("pdf-parse");
+const fs = require("fs");
 
-exports.bulkUpload = async (req, res) => {
-  try {
-    console.log(`[API] Received ${req.files.length} files`);
-    let saved = 0;
+exports.uploadResume = async (req, res) => {
+  const { file } = req;
+  const dataBuffer = fs.readFileSync(file.path);
+  const uploaderId = req.user.id;
 
-    for (const file of req.files) {
-      const data = await parseResume(file.buffer);
-      const resume = new Resume(data);
-      await resume.save();
-      saved++;
-      console.log(`[DB] Resume ${saved} saved`);
-    }
+  const data = await pdfParse(dataBuffer);
+  const text = data.text;
 
-    res.json({ saved });
-  } catch (err) {
-    console.error("[API] Bulk upload failed:", err);
-    res.status(500).json({ error: 'Failed bulk upload' });
-  }
+  const extractedData = {
+    name: extractName(text),
+    email: extractEmail(text),
+    phone: extractPhone(text),
+    skills: extractSkills(text),
+    experience: extractExperience(text),
+    education: extractEducation(text),
+  };
+
+  const newResume = new Resume({
+    uploader: uploaderId,
+    fileUrl: file.path,
+    parsedData: extractedData,
+  });
+
+  await newResume.save();
+  res.json({ message: "Resume uploaded & parsed successfully", resume: newResume });
 };
+
+// Very simple extractors (improve later!)
+const extractName = (text) => text.split('\n')[0];
+const extractEmail = (text) => text.match(/\S+@\S+\.\S+/)?.[0] || "";
+const extractPhone = (text) => text.match(/\d{10}/)?.[0] || "";
+const extractSkills = (text) => [];
+const extractExperience = (text) => "";
+const extractEducation = (text) => "";

@@ -1,0 +1,32 @@
+/* ResumeList Container */
+.resumelist-container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 20px 40px;
+}
+
+/* Filters Component (handled separately, but safe default) */
+.filters-container {
+  margin-bottom: 30px;
+}
+
+/* Resume Cards Grid */
+.resumelist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+/* Resume Card Wrapper (can be applied inside ResumeCard too) */
+.resume-card {
+  background: #ffffff;
+  padding: 20px 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.resume-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}

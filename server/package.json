@@ -1,29 +1,27 @@
 {
-  "name": "server",
+  "name": "resume-parser-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "nodemon app.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "axios": "^1.9.0",
-    "bcryptjs": "^3.0.2",
-    "child_process": "^1.0.2",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.3",
+    "cookie-session": "^2.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
-    "express": "^5.1.0",
-    "google-auth-library": "^10.1.0",
-    "jsonwebtoken": "^9.0.2",
-    "mongodb": "^6.17.0",
-    "mongoose": "^8.15.1",
-    "multer": "^2.0.1"
+    "express": "^4.21.2",
+    "form-data": "^4.0.3",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.8.7",
+    "multer": "^1.4.5-lts.1",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
+    "pdf-parse": "^1.1.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
-  },
-  "description": ""
+    "nodemon": "^3.0.1"
+  }
 }

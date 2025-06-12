@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { GoogleLogin, googleLogout, useGoogleLogin } from '@react-oauth/google';
-import axios from 'axios';
+import { GoogleLogin, googleLogout } from '@react-oauth/google';
+import './index.css';
 
 const GoogleAuth = ({ setUser, user }) => {
 
@@ -25,17 +25,21 @@ const GoogleAuth = ({ setUser, user }) => {
   }, []);
 
   return (
-    <div>
+    <div className="auth-container">
       {user ? (
-        <div>
-          <p>Welcome, {user.name}</p>
-          <button onClick={handleLogout}>Logout</button>
+        <div className="welcome-box">
+          <button className="logout-btn" onClick={handleLogout}>Logout</button>
+          <h3>Welcome, {user.name} 👋</h3>
+          <p>{user.email}</p>
         </div>
       ) : (
-        <GoogleLogin
-          onSuccess={handleLoginSuccess}
-          onError={() => console.log('Login Failed')}
-        />
+        <div className="login-box">
+          <h2>Login to Resume Parser</h2>
+          <GoogleLogin
+            onSuccess={handleLoginSuccess}
+            onError={() => console.log('Login Failed')}
+          />
+        </div>
       )}
     </div>
   );
